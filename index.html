@@ -10,20 +10,23 @@
   </head>
 <body>
    <div class="container" ng-controller="NarrowItDownController as narrow">
-    <h1>Narrow Down Your Chinese Menu Choice</h1>
+    <div class="row">
+      <h1>Narrow Down Your Chinese Menu Choice</h1>
 
-    <div class="form-group">
-      <input type="text" ng-model="narrow.searchTerm" placeholder="search term" class="form-control">
+      <div class="form-group">
+        <input type="text" ng-model="narrow.searchTerm" placeholder="search term" class="form-control">
+      </div>
+      <div class="form-group narrow-button">
+        <button class="btn btn-primary" ng-click="narrow.narrowItDown()">Narrow It Down For Me!</button>
+      </div>
     </div>
-    <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="narrow.narrowItDown()">Narrow It Down For Me!</button>
-    </div>
-
     <!-- Bonus loader (see Bonus section of the assignment) -->
     <items-loader-indicator></items-loader-indicator>
 
     <!-- found-items should be implemented as a component -->
-    <found-items found-items="narrow.found" on-remove="narrow.removeItem(index)"></found-items>
+    <div class="row">
+    <found-items found="narrow.found" on-remove="narrow.removeItem(index)"></found-items>
+    </div>
   </div>
 
 </body>

@@ -11,13 +11,16 @@ function foundItemsDirective() {
   var ddo = {
     templateUrl: 'foundList.html',
     scope: {
-      foundItems: '<',
+      found: '<',
       onRemove: '&'
-    },
+    }
   };
 
   return ddo;
 }
+
+
+
 
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
@@ -27,6 +30,7 @@ function NarrowItDownController(MenuSearchService) {
     var promise = MenuSearchService.getMatchedMenuItems(narrow.searchTerm);
 
     promise.then(function (response) {
+      console.log(response);
       narrow.found = response;
     })
     .catch(function (error) {
@@ -51,7 +55,8 @@ function MenuSearchService($http, ApiBasePath) {
       url: (ApiBasePath + "/menu_items.json")
     }).then(function(result) {
       var retarr = [];
-      var foundItems = result.data;
+      console.log(result);
+      var foundItems = result.data.menu_items;
       for (var i = 0; i < foundItems.length; i++) {
         if(foundItems[i].description.toLowerCase().indexOf(searchTerm) != -1) {
           retarr.push(foundItems[i]);
