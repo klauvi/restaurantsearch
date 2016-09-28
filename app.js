@@ -32,6 +32,12 @@ function NarrowItDownController(MenuSearchService) {
     promise.then(function (response) {
       console.log(response);
       narrow.found = response;
+      if(narrow.searchTerm == "" || narrow.found.length == 0) {
+        narrow.nothing = true;
+      }
+      else {
+        narrow.nothing = false;
+      }
     })
     .catch(function (error) {
       console.log(error);

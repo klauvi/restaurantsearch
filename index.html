@@ -25,7 +25,8 @@
 
     <!-- found-items should be implemented as a component -->
     <div class="row">
-    <found-items found="narrow.found" on-remove="narrow.removeItem(index)"></found-items>
+    <span class="alert alert-danger" ng-if="narrow.nothing">Nothing found!</span>
+    <found-items found="narrow.found" on-remove="narrow.removeItem(index)" ng-if="!narrow.nothing"></found-items>
     </div>
   </div>
 
